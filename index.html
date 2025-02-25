@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OBI Bots</title>
+    <title>OBI Bots Chat</title>
     <style>
         * {
             margin: 0;
@@ -25,34 +25,31 @@
     </style>
 </head>
 <body>
+ 
+    
     <script id='obi-bots-launcher' src='https://cloudstatic.obi4wan.com/ngbots/obi-launcher.bundle.js'></script>
- <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        OBI.bots("33158f3d-15c1-4af8-aef4-89deb125a0a8");
 
-        let checkLauncherIframe = setInterval(function() {
-            let chatIframe = document.querySelector("iframe[data-custom='OBIBots_launcher']");
-            if (chatIframe) {
-                clearInterval(checkLauncherIframe);
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            OBI.bots("33158f3d-15c1-4af8-aef4-89deb125a0a8");
 
-                chatIframe.addEventListener("load", function() {
-                    try {
-                        let chatDoc = chatIframe.contentDocument || chatIframe.contentWindow.document;
-                        let closeButton = chatDoc.querySelector("button#launcherButton.open");
+            let checkLauncherIframe = setInterval(function() {
+                let launcherIframe = document.querySelector("iframe[data-custom='OBIBots_launcher']");
+                if (launcherIframe) {
+                    clearInterval(checkLauncherIframe);
 
-                        if (closeButton) {
-                            closeButton.remove(); 
-                            console.log("Sluitknop verwijderd!");
-                        }
-                    } catch (error) {
-                        console.log("Kan geen toegang krijgen tot de launcher iframe: ", error);
+                    let launcherDoc = launcherIframe.contentDocument || launcherIframe.contentWindow.document;
+                    let launcherButton = launcherDoc.querySelector("#launcherButton");
+
+                    if (launcherButton) {
+                        launcherButton.click();
+                        console.log("Chat automatisch geopend!");
+                    } else {
+                        console.log("Launcher-knop niet gevonden.");
                     }
-                });
-            }
-        }, 100);
-    });
-</script>
-
-
+                }
+            }, 500);
+        });
+    </script>
 </body>
 </html>
