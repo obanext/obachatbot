@@ -26,22 +26,34 @@
 </head>
 <body>
     <script id='obi-bots-launcher' src='https://cloudstatic.obi4wan.com/ngbots/obi-launcher.bundle.js'></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            OBI.bots("33158f3d-15c1-4af8-aef4-89deb125a0a8");
+   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        OBI.bots("33158f3d-15c1-4af8-aef4-89deb125a0a8");
 
-            setTimeout(function() {
-                if (OBI && OBI.launcher && OBI.launcher.open) {
-                    OBI.launcher.open();
-                }
-                
-                // Forceer weergave van de chat-widget
-                let chatFrame = document.querySelector("iframe[data-custom='OBIBots_widget']");
-                if (chatFrame) {
-                    chatFrame.style.display = "block";
-                }
-            }, 1000); // Even wachten zodat het script geladen is
-        });
-    </script>
+        // Controleer of de iframe wordt toegevoegd aan de pagina
+        let checkIframe = setInterval(function() {
+            let iframe = document.querySelector("iframe[data-custom='OBIBots_launcher']");
+            if (iframe) {
+                clearInterval(checkIframe); // Stop de check zodra de iframe gevonden is
+
+                iframe.addEventListener("load", function() {
+                    try {
+                        let iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        let button = iframeDoc.querySelector("#launcherButton");
+                        if (button) {
+                            button.click(); // Klik automatisch op de chatbot-knop
+                            console.log("Chat direct geopend!");
+                        } else {
+                            console.log("Knop niet gevonden in de iframe.");
+                        }
+                    } catch (error) {
+                        console.log("Kan geen toegang krijgen tot de iframe: ", error);
+                    }
+                });
+            }
+        }, 100); // Controleer elke 100ms of de iframe is toegevoegd
+    });
+</script>
+
 </body>
 </html>
