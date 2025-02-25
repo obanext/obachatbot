@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OBI Bots</title>
     <style>
+        /* Basis reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+     
         body {
             padding: 20px;
             font-family: Arial, sans-serif;
         }
 
+       
         @media (max-width: 600px) {
             body {
                 padding: 10px;
@@ -27,17 +30,7 @@
 <body>
     <script id='obi-bots-launcher' src='https://cloudstatic.obi4wan.com/ngbots/obi-launcher.bundle.js'></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const chat = OBI.bots("33158f3d-15c1-4af8-aef4-89deb125a0a8", {
-                open_by_default: true
-            });
-
-            setTimeout(function() {
-                if (chat && chat.openTheChatbot) {
-                    chat.openTheChatbot();
-                }
-            }, 1000);
-        });
+        OBI.bots("33158f3d-15c1-4af8-aef4-89deb125a0a8");
     </script>
 </body>
 </html>
