@@ -22,22 +22,6 @@
                 font-size: 16px;
             }
         }
-
-        .obi-chat-container {
-            position: fixed !important;
-            left: 20px !important;
-            right: auto !important;
-            bottom: 20px !important;
-            width: 350px !important;
-            max-width: 90% !important;
-        }
-
-        .obi-close-button {
-            display: none !important;
-            visibility: hidden !important;
-            opacity: 0 !important;
-            pointer-events: none !important;
-        }
     </style>
 </head>
 <body>
@@ -50,27 +34,7 @@
                 if (OBI && OBI.launcher) {
                     OBI.launcher.open();
                 }
-            }, 1000);
-
-            setTimeout(function() {
-                let chatContainer = document.querySelector('.obi-chat-container');
-                if (chatContainer) {
-                    chatContainer.style.position = 'fixed';
-                    chatContainer.style.left = '20px';
-                    chatContainer.style.right = 'auto';
-                    chatContainer.style.bottom = '20px';
-                    chatContainer.style.width = '350px';
-                    chatContainer.style.maxWidth = '90%';
-                }
-
-                let closeButton = document.querySelector('.obi-close-button');
-                if (closeButton) {
-                    closeButton.style.display = 'none';
-                    closeButton.style.visibility = 'hidden';
-                    closeButton.style.opacity = '0';
-                    closeButton.style.pointerEvents = 'none';
-                }
-            }, 3000);
+            }, 1000); // Vertraging om zeker te zijn dat het script geladen is
         });
     </script>
 </body>
