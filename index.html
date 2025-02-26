@@ -29,38 +29,27 @@
     
     <script id='obi-bots-launcher' src='https://cloudstatic.obi4wan.com/ngbots/obi-launcher.bundle.js'></script>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        let checkIframe = setInterval(function() {
-            let launcherIframe = document.querySelector("iframe[data-custom='OBIBots_launcher']");
-            if (launcherIframe) {
-                clearInterval(checkIframe);
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            OBI.bots("33158f3d-15c1-4af8-aef4-89deb125a0a8");
 
-                let launcherDoc = launcherIframe.contentDocument || launcherIframe.contentWindow.document;
-                
-                // Wacht op de launcher-knop en klik erop om de chat te openen
-                let checkLauncherButton = setInterval(function() {
+            let checkLauncherIframe = setInterval(function() {
+                let launcherIframe = document.querySelector("iframe[data-custom='OBIBots_launcher']");
+                if (launcherIframe) {
+                    clearInterval(checkLauncherIframe);
+
+                    let launcherDoc = launcherIframe.contentDocument || launcherIframe.contentWindow.document;
                     let launcherButton = launcherDoc.querySelector("#launcherButton");
+
                     if (launcherButton) {
-                        clearInterval(checkLauncherButton);
                         launcherButton.click();
                         console.log("Chat automatisch geopend!");
+                    } else {
+                        console.log("Launcher-knop niet gevonden.");
                     }
-                }, 500);
-
-                // Wacht op de sluitknop en verwijder deze
-                let checkCloseButton = setInterval(function() {
-                    let closeButton = launcherDoc.querySelector("#launcherButton.open");
-                    if (closeButton) {
-                        clearInterval(checkCloseButton);
-                        closeButton.remove();
-                        console.log("Sluitknop automatisch verwijderd!");
-                    }
-                }, 500);
-            }
-        }, 500);
-    });
-</script>
-
+                }
+            }, 500);
+        });
+    </script>
 </body>
 </html>
